@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask WebApp</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1 style="text-align:center">Welcome on our Webpage with a bot assisting by a text to speech avatar</h1>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>    
+
+    <div class="flex-container">
+        <div id="videoContainer" style="position: relative; width: 770px;">
+          <div id="overlayArea" style="position: absolute;" hidden="hidden">
+            <!-- Add your text or image controls here -->
+            <p id="overlayText" style="font-size: large;">Live Video</p>
+            <!-- <img id="overlayImage" src="your-image-source.png" alt="Overlay Image"> -->
+          </div>
+          <div id="remoteVideo"></div>
+          <canvas id="canvas" width="1920" height="1080" style="background-color: transparent;" hidden="hidden"></canvas>
+          <canvas id="tmpCanvas" width="1920" height="1080" hidden="hidden"></canvas>
+        </div>
+    </div>
+    
+    <h2 style="background-color: white; width: 250px;">Launch buttons</h2>
+    <button id="startSession" onclick="window.startSession()">Start Session</button>
+    <button id="speak" onclick="window.speak()" disabled="disabled">Speak</button>
+    <button id="stopSession" onclick="window.stopSession()" disabled="disabled">Stop Session</button>
+    <button id="startbutton" onclick="window.startbutton()" >Start Hearing a message</button>
+    <div id="results"></div>
+
+    <h2 style="background-color: white; width: 300px;">Logs</h2>
+    <div id="logging" style="background-color: white;"></div>
+  </body>
+</html>
