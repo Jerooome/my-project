@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response, jsonify
+from flask import Flask, render_template, request, Response, jsonify, send_from_directory
 import os
 import azure.cognitiveservices.speech as speechsdk
 import json
@@ -10,7 +10,8 @@ load_dotenv()
 
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../frontend/public", static_url_path="")
+
 app.config['SECRET_KEY'] = os.environ.get("BotSecretKey")  # Set your secret key here
 speech_region = os.environ.get('SPEECH_REGION')
 speech_key = os.environ.get('SPEECH_KEY')
@@ -28,9 +29,17 @@ database = client.get_database_client(database_name)
 container = database.get_container_client(container_name)
 
 @app.route('/')
-def index():
-    return render_template('index.html', methods=["GET"])
+def serve_index():
+    return send_from_directory(app.static_folder, 'index.html')
 
+# Route pour servir les fichiers statiques (JS et CSS)
+@app.route('/static/<path:path>')
+def serve_static(path):
+    return send_from_directory(os.path.join(app.static_folder, 'static'), path)
+
+@app.route('/src/<path:path>')
+def serve_src(path):
+    return send_from_directory(os.path.join(app.static_folder, 'src'), path)
 
 # The API route to get the ICE token
 @app.route("/api/getIceToken", methods=["GET"])
