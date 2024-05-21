@@ -136,7 +136,6 @@ def speak() -> Response:
     except Exception as e:
         return Response(f"Result ID: {speech_sythesis_result.result_id}. Error message: {e}", status=400)
 
-
 @app.route('/api/get-latest-message', methods=['GET'])
 def get_latest_message():
     query = "SELECT c.message FROM c ORDER BY c._ts DESC OFFSET 0 LIMIT 1"
