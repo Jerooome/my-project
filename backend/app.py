@@ -12,6 +12,7 @@ load_dotenv()
 
 
 app = Flask(__name__, static_folder="../frontend/public", static_url_path="")
+CORS(app)
 
 app.config['SECRET_KEY'] = os.environ.get("BotSecretKey")  # Set your secret key here
 speech_region = os.environ.get('SPEECH_REGION')
