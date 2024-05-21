@@ -5,6 +5,7 @@ import json
 from azure.cosmos import CosmosClient, exceptions
 import requests
 import traceback
+from flask_cors import CORS
 from dotenv import load_dotenv
 load_dotenv()
 

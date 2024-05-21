@@ -10,3 +10,4 @@ Flask
 azure-cognitiveservices-speech
 azure-cosmos
 azure-functions
+flask_cors
