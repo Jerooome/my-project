@@ -1,11 +1,4 @@
 {
-    "version": "2.0",
-    "routes": {
-      "api/*": {
-        "backend": {
-          "function": "main"
-        }
-      }
-    }
+    "version": "2.0"
   }
   
